@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Listagem de Jogadas</title>
+</h:head>
+<h:body>
+    <h:form id="cadastroForm" styleClass="centered-form">
+        <h1 class="page-title">Listagem de Jogadas</h1>
+        
+        <p:dataTable var="j" value="#{jogadaBean.jogadasModel}" styleClass="data-table">
+            <p:column headerText="ID">
+                <h:outputText value="#{j.id}" />
+            </p:column>
+            <p:column headerText="Jogador 1">
+                <h:outputText value="#{j.jogador1}" />
+            </p:column>
+            <p:column headerText="Jogador 2">
+                <h:outputText value="#{j.jogador2}" />
+            </p:column>
+            <p:column headerText="Resultados">
+                <h:outputText value="#{j.resultado}" />
+            </p:column>
+            <p:column headerText="Data">
+                <h:outputText value="#{j.data}" />
+            </p:column>
+     
+     
+            <p:column headerText="Excluir">
+                <p:commandButton value="Excluir" action="#{jogadaBean.excluirJogada(j)}" styleClass="button" />
+            </p:column>
+            <p:column headerText="Editar">
+            <p:inputText value="#{j.jogador1}" />
+            <p:inputText value="#{j.jogador2}" />
+            <p:commandButton value="Salvar" action="#{jogadaBean.editarNomes(j)}" styleClass="button" />
+            
+        </p:column>
+        </p:dataTable>
+
+        <p:button outcome="index" value="Voltar" styleClass="button" />
+
+     <h:outputText value="Pedra: #{jogadaBean.contarJogada('Pedra')}" />
+	<h:outputText value="Papel: #{jogadaBean.contarJogada('Papel')}" />
+	<h:outputText value="Tesoura: #{jogadaBean.contarJogada('Tesoura')}" />
+	
+	 <p:growl id="messages" showDetail="true" />
+
+    </h:form>
+    
+</h:body>
+</html>
